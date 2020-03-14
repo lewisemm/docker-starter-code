@@ -9,7 +9,6 @@ const port = 3000;
 app.get('/', (req, res) => res.send('Hello World'));
 
 app.post('/puns', (req, res) => {
-  console.log(req.body);
   const punchline = req.body.punchline;
 
   if (!punchline) {
@@ -19,8 +18,6 @@ app.post('/puns', (req, res) => {
   console.log("Are we getting here?");
   Pun.sync().then( ()=> {
     return Pun.create({punchline}).then(pun => {
-      console.log("What is pun?");
-      console.log(pun);
       return res.status(201).send({ pun });
     });
   });
