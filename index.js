@@ -23,4 +23,11 @@ app.post('/puns', (req, res) => {
   });
 });
 
+app.get('/puns', async (req, res) => {
+  const puns = await Pun.findAll();
+
+  res.setHeader('content-type', 'application/json');
+  return res.status(200).send(JSON.stringify(puns));
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));
